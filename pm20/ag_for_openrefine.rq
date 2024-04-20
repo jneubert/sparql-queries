@@ -42,11 +42,10 @@ where {
     filter(lang(?broaderLangEn) = 'en')
     bind(str(?broaderLangEn) as ?broaderEn)
     optional {
-      ?s skos:note ?note .
-      filter(!contains(?note, 'FolderCount'))
+      ?s skos:scopeNote ?note .
     }
   }
 }
-group by ?id ?broaderEn ?labelDe ?labelEn
-order by ?broaderEn ?id
+group by ?id ?labelDe ?labelEn
+order by ?nta
 
