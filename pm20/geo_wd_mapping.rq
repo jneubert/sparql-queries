@@ -6,7 +6,7 @@ PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX wd: <http://www.wikidata.org/entity/>
 #
-select distinct ?id (?concept as ?notation) (?nta as ?notationLabel) ?labelDe ?labelEn (str(max(?note)) as ?noteDe) ?wd
+select distinct ?nta ?concept ?conceptLabel ?wd (str(max(?note)) as ?noteDe)
 where {
   graph <http://zbw.eu/beta/geo/ng> {
     ?concept skos:prefLabel ?labelLangEn ;
@@ -35,7 +35,8 @@ where {
     }
     filter(?ntaWd = ?nta)
   }
+  bind(concat(str(?labelDe), ' | ', str(?labelEn)) as ?conceptLabel)
 }
-group by ?concept ?id ?labelDe ?labelEn ?wd ?nta ?ntaLong
+group by ?concept ?conceptLabel ?id ?labelDe ?labelEn ?wd ?nta ?ntaLong
 order by ?ntaLong
 
