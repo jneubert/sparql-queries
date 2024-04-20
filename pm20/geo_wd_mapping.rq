@@ -1,0 +1,41 @@
+# Mapping of PM20 countries to Wikidata
+#
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+#
+select distinct ?id (?concept as ?notation) (?nta as ?notationLabel) ?labelDe ?labelEn (str(max(?note)) as ?noteDe) ?wd
+where {
+  graph <http://zbw.eu/beta/geo/ng> {
+    ?concept skos:prefLabel ?labelLangEn ;
+       zbwext:notationLong ?ntaLong ;
+       skos:notation ?nta ;
+       dct:identifier ?id .
+    filter(lang(?labelLangEn) = 'en')
+    bind(str(?labelLangEn) as ?labelEn)
+    ?concept skos:prefLabel ?labelLangDe .
+    filter(lang(?labelLangDe) = 'de')
+    bind(str(?labelLangDe) as ?labelDe)
+    #
+    optional {
+      ?concept skos:scopeNote ?note .
+      filter(!contains(?note, 'FolderCount'))
+    }
+  }
+  # existing mappings to Wikidata
+  optional {
+    # ?nta is not bound within the service clause!
+    service <https://query.wikidata.org/sparql> {
+      select *
+      where {
+        ?wd wdt:P8483 ?ntaWd .
+      }
+    }
+    filter(?ntaWd = ?nta)
+  }
+}
+group by ?concept ?id ?labelDe ?labelEn ?wd ?nta ?ntaLong
+order by ?ntaLong
+
