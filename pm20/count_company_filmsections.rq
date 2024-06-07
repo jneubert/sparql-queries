@@ -1,0 +1,21 @@
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX schema: <http://schema.org/>
+PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
+
+# count company filmsections and linked folders
+
+select (str(count(?section)) as ?sectionCount) (str(count(?pm20folder)) as ?withFolders)
+(str(count(distinct ?pm20folder)) as ?distinctFolders) (str(sum(?docs)) as ?sectionsForFoldersWithDocs)
+where {
+  ?section a zbwext:Pm20FilmItem .
+  bind(substr(str(?section), 29, 2) as ?collection)
+  filter(?collection = 'co')
+  optional {
+    ?section schema:about ?pm20folder .
+    optional {
+      ?pm20folder zbwext:totalDocCount ?docCnt .
+    }
+  }
+  bind(if(bound(?docCnt), 1, 0) as ?docs)
+}
+
