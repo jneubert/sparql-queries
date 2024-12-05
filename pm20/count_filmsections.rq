@@ -5,46 +5,46 @@ PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
 
 select (str(?cnt) as ?sectionCount) ?collection ?filming
 where {
-  {
-    select (count(?section) as ?cnt) ?collection ?filming
-    where {
-      ?section a zbwext:Pm20FilmItem .
-      # film subsets currently lack filming and collection properties
-      # so we use uri substrings
-      ##?section dct:isPartOf $film.
-      ##?film a zbwext:Pm20Film .
-      ##?film dct:isPartOf ?subset .
-      bind(substr(str(?section), 27, 1) as ?filming)
-      bind(substr(str(?section), 29, 2) as ?collection)
+  graph <http://zbw.eu/beta/film/ng> {
+    {
+      select (count(?section) as ?cnt) ?collection ?filming
+      where {
+        ?section a zbwext:Pm20FilmItem .
+        # film subsets currently lack filming and collection properties
+        # so we use uri substrings
+        ##?section dct:isPartOf $film.
+        ##?film a zbwext:Pm20Film .
+        ##?film dct:isPartOf ?subset .
+        bind(substr(str(?section), 27, 1) as ?filming)
+        bind(substr(str(?section), 29, 2) as ?collection)
+      }
+      group by ?collection ?filming
     }
-    group by ?collection ?filming
-  }
-  union
-  {
-    select (count(?section) as ?cnt) ?collection ('all' as ?filming)
-    where {
-      ?section a zbwext:Pm20FilmItem .
-      bind(substr(str(?section), 29, 2) as ?collection)
+    union
+    {
+      select (count(?section) as ?cnt) ?collection ('all' as ?filming)
+      where {
+        ?section a zbwext:Pm20FilmItem .
+        bind(substr(str(?section), 29, 2) as ?collection)
+      }
+      group by ?collection
     }
-    group by ?collection
-  }
-  union
-  {
-    select (count(?section) as ?cnt) ('all' as ?collection) ?filming
-    where {
-      ?section a zbwext:Pm20FilmItem .
-      bind(substr(str(?section), 27, 1) as ?filming)
+    union
+    {
+      select (count(?section) as ?cnt) ('all' as ?collection) ?filming
+      where {
+        ?section a zbwext:Pm20FilmItem .
+        bind(substr(str(?section), 27, 1) as ?filming)
+      }
+      group by ?filming
     }
-    group by ?filming
-  }
-  union
-  {
-    select (count(?section) as ?cnt) ('all' as ?collection) ('all' as ?filming)
-    where {
-      ?section a zbwext:Pm20FilmItem .
+    union
+    {
+      select (count(?section) as ?cnt) ('all' as ?collection) ('all' as ?filming)
+      where {
+        ?section a zbwext:Pm20FilmItem .
+      }
     }
   }
-
 }
 order by ?collection ?filming
-

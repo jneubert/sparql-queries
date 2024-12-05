@@ -6,12 +6,13 @@ PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
 
 select ?collection (str(count(?section)) as ?sectionCount) (str(sum(?linked)) as ?linkedSectionCount)
 where {
-  ?section a zbwext:Pm20FilmItem .
-  bind(substr(str(?section), 29, 2) as ?collection)
-  optional {
-    ?section zbwext:country|zbwext:ware|schema:about ?dummy .
+  graph <http://zbw.eu/beta/film/ng> {
+    ?section a zbwext:Pm20FilmItem .
+    bind(substr(str(?section), 29, 2) as ?collection)
+    optional {
+      ?section zbwext:country|zbwext:ware|schema:about ?dummy .
+    }
+    bind(if(bound(?dummy), 1, 0) as ?linked)
   }
-      bind(if(bound(?dummy), 1, 0) as ?linked)
 }
 group by ?collection
-

@@ -5,8 +5,10 @@ PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
 
 select (str(count(?section)) as ?sectionCount) ?source
 where {
-  ?section a zbwext:Pm20FilmItem;
-  dct:source ?source .
+  graph <http://zbw.eu/beta/film/ng> {
+    ?section a zbwext:Pm20FilmItem;
+    dct:source ?source .
+  }
 }
 group by ?source
 
