@@ -1,21 +1,28 @@
+# count company filmsections and linked folders
+
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX schema: <http://schema.org/>
 PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
 
-# count company filmsections and linked folders
-# (does not cover filmsections without linked folder!)
-
-select (str(count(?section)) as ?sectionCount) (str(count(?pm20folder)) as ?withFolders)
-(str(count(distinct ?pm20folder)) as ?distinctFolders) (str(sum(?docs)) as ?sectionsForFoldersWithDocs)
+select (str(count(?section)) as ?sectionCount) (str(sum(?withFolder)) as ?withFolders)
+(str(count(distinct ?pm20folder)) as ?distinctFolders)
+(str(sum(?withDocs)) as ?withFolderDocuments)
+(str(sum(?withoutDocs)) as ?withoutFolderDocuments)
 where {
   graph <http://zbw.eu/beta/film/ng> {
     ?section a zbwext:Pm20FilmItem .
     bind(substr(str(?section), 29, 2) as ?collection)
     filter(?collection = 'co')
-    ?section schema:about ?pm20folder .
+    optional {
+      ?section schema:about ?pm20folder .
+    }
+    bind(if(bound(?pm20folder), 1, 0) as ?withFolder)
   }
   optional {
+    filter(?withFolder = 1)
     ?pm20folder zbwext:totalDocCount ?docCnt .
   }
-  bind(if(bound(?docCnt), 1, 0) as ?docs)
+  bind(if(bound(?docCnt), 1, 0) as ?withDocs)
+  bind(if(!bound(?docCnt), 1, 0) as ?withoutDocs)
 }
+
