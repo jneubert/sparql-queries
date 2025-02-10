@@ -1,17 +1,23 @@
 # Create a table of ip entries for OpenRefine
 # (ip = Alte HWWA Warenklassifikation)
 #
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
-PREFIX schema: <http://schema.org/>
 PREFIX dct: <http://purl.org/dc/terms/>
-PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX gndo: <https://d-nb.info/standards/elementset/gnd#>
+PREFIX schema: <http://schema.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
 #
-select distinct  (str(?s) as ?descriptor) (str(count(distinct ?pm20)) as ?cnt)
+select distinct  (str(?s) as ?descriptor)
 (sample(?byGndX) as ?byGnd) ?byLabelsDe ?byLabelsEn
 ('' as ?rel) ?broaderDe ?notation (str(?note) as ?noteDe) ?id (max(?gndIdentifier) as ?gndId) ?s
 where {
+  graph <http://zbw.eu/beta/film/ng> {
+    ?section a zbwext:Pm20FilmItem ;
+      zbwext:ware ?s .
+    filter contains(str(?section), '/h1/')
+  }
   graph <http://zbw.eu/beta/ware/ng> {
     ?s skos:prefLabel ?labelLangDe ;
        skos:notation ?notation ;
@@ -30,11 +36,6 @@ where {
     }
     bind(if(bound(?gndIdentifier), 'some gnd', '') as ?byGndX)
     #
-#    filter(not exists {
-#        ?s skos:exactMatch ?wd .
-#        filter(contains(str(?wd), 'wikidata'))
-#      }
-#    )
     optional {
       ?broader skos:narrower ?s ;
                skos:prefLabel ?broaderLangDe .
@@ -45,12 +46,12 @@ where {
       ?s skos:scopeNote ?note .
       filter(!contains(?note, 'folderCount'))
     }
-  }
-  optional {
-    ?pm20 zbwext:ware ?s .
+  } minus {
+    service <https://query.wikidata.org/sparql> {
+      ?wd wdt:P10890 ?id .
+    }
   }
 }
 group by ?s ?broaderDe ?id ?notation ?byLabelsEn ?byLabelsDe ?note
-having ( ?cnt != "0" )
 order by ?notation ?id
 
