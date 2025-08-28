@@ -1,5 +1,7 @@
 ## Queries for lobid.org
 
+**OBSOLETE - endpoint for dataset not available any more**
+
 Public endpoint of [lobid](http://lobid.org) - data infrastructure for libraries ([hbz](https://www.hbz-nrw.de/))
 
 Query | Description

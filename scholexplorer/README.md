@@ -1,5 +1,7 @@
 ## Queries for the ScholeXplorer collection
 
+**OBSOLETE - endpoint for dataset not available any more**
+
 Query | Description
 ------|------------
 [linksPerNamedGraph.rq](https://zbw.eu/beta/sparql-lab/?endpoint=http://zbw.eu/beta/sparql/scholexplorer/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/scholexplorer/linksPerNamedGraph.rq) | List the number of links per named graph.

@@ -1,5 +1,7 @@
 ## Queries for Project GeRDI collection
 
+**OBSOLETE - endpoint for dataset not available any more**
+
 Query | Description
 ------|------------
 [datasetsPerProvider.rq](https://zbw.eu/beta/sparql-lab/?endpoint=http://zbw.eu/beta/sparql/gerdi/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/gerdi/datasetsPerProvider.rq) | List datasets based on the provider.
