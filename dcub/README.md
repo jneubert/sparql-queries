@@ -1,5 +1,7 @@
 ## Queries in the context of DC Usage Board
 
+**OBSOLETE - endpoint for dataset not available any more**
+
 Uses [LOD4ALL](lod4all.net) endpoint.
 
 Query | Description

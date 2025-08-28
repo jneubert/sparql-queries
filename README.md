@@ -27,13 +27,9 @@ Dataset-specific queries
 
 ### [German Integrated Autority File (GND)](gnd)
 
-### [Economists subset of GND](econ_pers)
-
 ### [20th Century Press Archives (PM20)](pm20)
 
 ### [Wikidata](wikidata)
-
-### [VIAF](viaf)
 
 Contributing
 ------------
