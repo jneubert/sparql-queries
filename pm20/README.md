@@ -68,6 +68,8 @@ List | Description
 
 ### Film sections
 
+List | Description
+-----|------------
 [count_filmsections](https://jneubert.de/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://codeberg.org/api/v1/repos/jneubert/sparql-queries/contents/pm20/count_filmsections.rq) | Statistics on filmsecions, aggregated by filming and/or collection
 [count_company_filmsections](https://jneubert.de/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://codeberg.org/api/v1/repos/jneubert/sparql-queries/contents/pm20/count_company_filmsections.rq) | Count company filmsections and linked folders
 [count_filmsections_linked](https://jneubert.de/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://codeberg.org/api/v1/repos/jneubert/sparql-queries/contents/pm20/count_filmsections_linked.rq) | Count filmsections by collection, with info how many are linked to folders or categories
