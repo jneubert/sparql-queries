@@ -66,3 +66,12 @@ List | Description
 [broaderLocation](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/jneubert/sparql-queries/contents/pm20/count_value.rq&property=zbwext:broaderLocation) | Broader location
 [countryCode](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/jneubert/sparql-queries/contents/pm20/count_country_code.rq) | ISO 3166-1 alpha-2 country code (with country names from Wikidata)
 
+### Film sections
+
+List | Description
+-----|------------
+[count_filmsections](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/jneubert/sparql-queries/contents/pm20/count_filmsections.rq) | Statistics on filmsecions, aggregated by filming and/or collection
+[count_company_filmsections](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/jneubert/sparql-queries/contents/pm20/count_company_filmsections.rq) | Count company filmsections and linked folders
+[count_filmsections_linked](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/jneubert/sparql-queries/contents/pm20/count_filmsections_linked.rq) | Count filmsections by collection, with info how many are linked to folders or categories
+[count_filmsections_by_source](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/jneubert/sparql-queries/contents/pm20/count_filmsections_by_source.rq) | Statistics on filmsecions, aggregated by source
+
