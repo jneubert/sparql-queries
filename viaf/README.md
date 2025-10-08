@@ -1,5 +1,7 @@
 ## Queries for VIAF
 
+**OBSOLETE - endpoint for dataset not available any more**
+
 Uses ZBW's internal VIAF enpoint. Therefore the queries do not execute in SPARQL LAB when triggered from outside. Instead, result files are provided.
 
 Query | Description

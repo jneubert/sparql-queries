@@ -1,0 +1,18 @@
+PREFIX schema: <http://schema.org/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
+
+# count filmsections by collection, with info how many are linked to folders or categories
+
+select ?collection (str(count(?section)) as ?sectionCount) (str(sum(?linked)) as ?linkedSectionCount)
+where {
+  graph <http://zbw.eu/beta/film/ng> {
+    ?section a zbwext:Pm20FilmItem .
+    bind(substr(str(?section), 29, 2) as ?collection)
+    optional {
+      ?section zbwext:country|zbwext:ware|schema:about ?dummy .
+    }
+    bind(if(bound(?dummy), 1, 0) as ?linked)
+  }
+}
+group by ?collection

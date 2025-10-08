@@ -36,7 +36,7 @@ Query | Description
 [geo_by_signature](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/geo_by_signature.rq) | Systematic list of geo categories
 [subject_by_signature](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/subject_by_signature.rq) | Systematic list of subject categories
 [ware_by_signature](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/ware_by_signature.rq) | Systematic list of ware categories
-[voc_wd_mapping](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/voc_wd_mapping.rq) | Mapping of countries category system to WD
+[geo_wd_mapping](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/geo_wd_mapping.rq) | Mapping of countries category system to WD
 [sk_wd_mapping](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/sk_wd_mapping.rq) | Mapping of industries category system to WD
 [add_category_code](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/add_category_code.rq) | Statements for adding missing category codes to Wikidata
 [add_category_doc_counts](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/add_category_doc_counts.rq) | Get aggregated document counts (free and total) for folders connected to WD items by category for adding to Wikidata
@@ -65,4 +65,13 @@ List | Description
 [location](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/count_value.rq&property=schema:location) | Location
 [broaderLocation](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/count_value.rq&property=zbwext:broaderLocation) | Broader location
 [countryCode](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/count_country_code.rq) | ISO 3166-1 alpha-2 country code (with country names from Wikidata)
+
+### Film sections
+
+List | Description
+-----|------------
+[count_filmsections](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/count_filmsections.rq) | Statistics on filmsecions, aggregated by filming and/or collection
+[count_company_filmsections](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/count_company_filmsections.rq) | Count company filmsections and linked folders
+[count_filmsections_linked](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/count_filmsections_linked.rq) | Count filmsections by collection, with info how many are linked to folders or categories
+[count_filmsections_by_source](http://zbw.eu/beta/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://api.github.com/repos/zbw/sparql-queries/contents/pm20/count_filmsections_by_source.rq) | Statistics on filmsecions, aggregated by source
 
