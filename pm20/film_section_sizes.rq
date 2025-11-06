@@ -1,0 +1,24 @@
+# Wares with most images per section, ordered by avg. section size
+#
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX zbwext: <http://zbw.eu/namespaces/zbw-extensions/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+#
+select ?ware ?wareLabel (str(?cnt) as ?sectionCount) (str(?wareImgCnt) as ?sumOfImages)
+where {
+  select ?ware ?wareLabel (count(?section) as ?cnt) (sum(?imgCnt) as ?wareImgCnt) ((?wareImgCnt / ?cnt) as ?size)
+  where {
+    graph <http://zbw.eu/beta/film/ng> {
+      # all h1 ware sections
+      ?section rdf:type zbwext:Pm20FilmItem ;
+               zbwext:ware ?ware ;
+               dct:title ?title ;
+               zbwext:totalImageCount ?imgCnt .
+      filter(contains(str(?section), '/h1/'))
+      bind(if(contains(?title, ' : '), strbefore(?title, ' : '), ?title) as ?wareLabel)
+    }
+  } 
+  group by ?ware ?wareLabel
+  order by desc(?size)
+}

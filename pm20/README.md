@@ -74,4 +74,5 @@ List | Description
 [count_company_filmsections](https://jneubert.de/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://codeberg.org/api/v1/repos/jneubert/sparql-queries/contents/pm20/count_company_filmsections.rq) | Count company filmsections and linked folders
 [count_filmsections_linked](https://jneubert.de/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://codeberg.org/api/v1/repos/jneubert/sparql-queries/contents/pm20/count_filmsections_linked.rq) | Count filmsections by collection, with info how many are linked to folders or categories
 [count_filmsections_by_source](https://jneubert.de/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://codeberg.org/api/v1/repos/jneubert/sparql-queries/contents/pm20/count_filmsections_by_source.rq) | Statistics on filmsecions, aggregated by source
+[film_section_sizes](https://jneubert.de/sparql-lab/?endpoint=https://zbw.eu/beta/sparql/pm20/query&queryRef=https://codeberg.org/api/v1/repos/jneubert/sparql-queries/conhttps://api.github.com/repos/zbwtents/pm20/film_section_sizes.rq) | Wares with most images per section, ordered by avg. section size
 
